@@ -32,6 +32,14 @@ a {
   @apply flex w-full justify-center disabled:bg-emerald-300 dark:disabled:bg-emerald-900 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600;
 }
 
+.red-scary-button{
+  @apply justify-center disabled:bg-red-300 dark:disabled:bg-red-900 rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600;
+}
+
+.just-a-button{
+  @apply justify-center disabled:bg-gray-300 dark:disabled:bg-gray-900 rounded-md bg-gray-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600;
+}
+
 .global-input {
   @apply block w-full rounded-md border-0 py-1.5 px-3 shadow-sm ring-1 ring-inset bg-white dark:bg-slate-800 ring-slate-200 dark:ring-slate-700 placeholder:text-gray-500 placeholder:font-light focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6
 }

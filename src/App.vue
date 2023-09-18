@@ -29,7 +29,6 @@ const newPassword: Ref<string> = ref('');
 const errorNewPassword: Ref<string> = ref('');
 const passwordConfirm: Ref<string> = ref('');
 
-
 function openDialog(title: string, text: string) {
   dialogTitle.value = title;
   dialogText.value = text;

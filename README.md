@@ -1,6 +1,6 @@
 # WebCraftShare-Web
 
-This is a rewrite of a frontend for [WebCraftShare](https://github.com/SuhJae/WebCraftShare-Web) in `vite`, `vue3`, and `tailwindcss`.
+This is a rewrite of a frontend for [WebCraftShare](https://github.com/SuhJae/WebCraftShare) in `vite`, `vue3`, and `tailwindcss`.
 
 ## Project setup
 ```
@@ -16,5 +16,5 @@ npm run dev
 ```
 npm run build
 ```
-After the build, the `dist` folder will be created. Those files will be moved to ststic folder of [WebCraftShare](https://github.com/SuhJae/WebCraftShare-Web) project.
+After the build, the `dist` folder will be created. Those files will be moved to ststic folder of [WebCraftShare](https://github.com/SuhJae/WebCraftShare) project.
 

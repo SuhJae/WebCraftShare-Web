@@ -1,12 +1,15 @@
-name: CI & Deploy
+name: CI
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,10 +30,8 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-      run: |
-        npm install gh-pages
-        npx gh-pages -d dist
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        CI: true
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: ./dist/

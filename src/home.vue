@@ -153,10 +153,13 @@ onUnmounted(() => {
   </div>
 
   <!-- test contents -->
+  <div>
 
-  <div v-for="i in 100" :key="i" class="p-4">
-    <h1>Test title</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita adipisci laboriosam, sit, eos voluptatem error
-      voluptate possimus quisquam aliquid numquam odio deserunt voluptates non ea praesentium ipsa exercitationem. Sint,
-    ipsam.</p>
-</div></template>
+    <div v-for="i in 100" :key="i" class="p-4">
+      <h1>Test title</h1>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita adipisci laboriosam, sit, eos voluptatem error
+        voluptate possimus quisquam aliquid numquam odio deserunt voluptates non ea praesentium ipsa exercitationem. Sint,
+        ipsam.</p>
+    </div>
+  </div>
+</template>

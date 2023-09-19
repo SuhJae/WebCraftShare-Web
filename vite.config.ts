@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        home: './home.html',
+        home: './public/home.htmlf',
       },
     },
   },

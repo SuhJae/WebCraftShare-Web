@@ -74,6 +74,8 @@ async function validateUserName(userName: string) {
     return 'Nickname must be alphanumeric!';
   }
 
+  userNameStatus.value = 'checking . . .';
+
   // Check if username is duplicate
   const response = await fetch(`/api/users?userName=${userName}`);
   const data = await response.json();
@@ -122,12 +124,14 @@ function handlePasswordReset() {
 }
 
 function handleSignUp() {
+
+  openDialog('Check your email!', `We have sent you an email to verify your email address (${signUpEmail.value}). Please click the link in the email to verify your email address.`);
+
   signUp.value = false;
   signUpEmail.value = '';
   userName.value = '';
   newPassword.value = '';
   passwordConfirm.value = '';
-  openDialog('Check your email!', 'We have sent you an email to verify your email address. Please click the link in the email to verify your email address.');
 }
 
 // Handle dark mode toggle
@@ -228,6 +232,7 @@ const signUpValid: Ref<boolean> = computed(() => {
             <div class="mt-2">
               <input autocomplete="username" placeholder="Choose your nickname" v-model="userName" :required="true" type="text" @keyup="handleNicknameKeyUp" class="global-input" />
               <small v-if="userNameStatus !== 'valid'" class="text-red-600 dark:text-red-400"> {{ userNameStatus }}</small>
+
               <div v-else>
                 <small class="text-green-600 dark:text-green-400"> Your websites will be hosted at: </small> <small><a
                     class="hover">{{ domain }}/{{ userName }}/</a></small>

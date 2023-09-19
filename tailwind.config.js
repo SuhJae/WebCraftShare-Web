@@ -2,8 +2,7 @@
 const colors = require('tailwindcss/colors')
 
 export default {
-  content: [],
-  purge: ['./index.html', './home.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: ['./*.html', './src/**/*.{vue,js,ts,jsx,tsx}'], // updated from purge to content
   darkMode: 'media',
   theme: {
     screens: {
@@ -24,4 +23,3 @@ export default {
   },
   plugins: [],
 }
-

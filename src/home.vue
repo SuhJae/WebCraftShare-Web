@@ -16,6 +16,9 @@ const dialogText: Ref<string> = ref('This is a <u>dialog</u> You can use it to d
 const isDialogCloseDisabled: Ref<boolean> = ref(false);
 const logoutConfirm: Ref<boolean> = ref(false);
 
+const userEmail: Ref<string> = ref('user@example.com');
+const userName: Ref<string> = ref('user');
+
 function toggleUserDropdown() {
   showUserDropdown.value = !showUserDropdown.value;
 }
@@ -90,51 +93,58 @@ onUnmounted(() => {
 <template>
   <!-- Navbar -->
   <nav
-    class="bg-slate-200 bg-opacity-40 dark:bg-slate-950 dark:bg-opacity-40 shadow-sm py-3 px-6 backdrop-blur-md sticky top-0 z-50 border-b border-opacity-20 border-slate-200">
-    <div class="container mx-auto flex items-center justify-between">
+    class="bg-slate-200 bg-opacity-40 dark:bg-slate-950 dark:bg-opacity-40 shadow-sm py-3 px-6 backdrop-blur-md sticky top-0 z-50 border-b border-opacity-20 border-slate-400 dark:border-opacity-20 dark:border-slate-200">
+    <div class="flex items-center justify-between mx-auto px-4 w-full md:max-w-screen-xl">
 
       <!-- Logo Section -->
       <div class="flex items-center space-x-2">
         <img v-if="darkMode" class="h-10 w-auto" src="/src/assets/images/logo-dark.svg" alt="WebCraftShare Logo">
         <img v-else class="h-10 w-auto" src="/src/assets/images/logo.svg" alt="WebCraftShare Logo">
-        <span class="text-xl font-semibold md:flex hidden">WCS</span>
-
+        <span class="text-xl font-semibold hidden md:block">WebCraftShare</span>
+        <span class="text-xl font-semibold md:hidden">WCS</span>
       </div>
 
-      <button
-        class="md:hidden p-2 hover:backdrop-blur-sm hover:backdrop-opacity-30 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
-        @click="toggleUserDropdown">
-        <UserCircleIcon class="h-6 w-6"></UserCircleIcon>
-      </button>
+      <!-- Right section: Currently Logged In Account, Logout Button, and Dropdown Menu Toggle -->
+      <div class="flex items-center space-x-4">
 
-      <!-- Right section: Currently Logged In Account and Logout Button -->
-      <div class="flex items-center space-x-4 md:flex hidden" id="navbarDropdown">
-        <div class="text-gray-700 dark:text-white">
-          <span class="text-emerald-600 font-semibold">Logged in as:</span> <br> example@example.com
+        <!-- Desktop User Info and Logout Button -->
+        <div class="flex items-center space-x-4 md:flex hidden text-right" id="navbarDropdown">
+          <div class="text-gray-700 dark:text-white">
+            <span class="font-semibold">Signed in as <span class="text-emerald-500">{{ userName }}</span></span><br><small>{{ userEmail }}</small>
+          </div>
+          <button class="red-scary-button" @click="logoutCheck">Sign Out</button>
         </div>
-        <button class="red-scary-button" @click="logoutCheck">Logout</button>
-      </div>
 
-      <!-- Dropdown menu for smaller screens -->
-      <div
-        class="absolute right-6 top-14 bg-slate-100 backdrop-blur-md bg-opacity-30 border border-opacity-20 border-slate-200 dark:bg-opacity-30 shadow-md dark:bg-slate-800 md:hidden rounded-lg"
-        v-if="showUserDropdown" id="smallScreenMenu">
-        <div class="p-4 border-b border-opacity-20 border-slate-200">
-          <span class="text-emerald-600 font-semibold">Logged in as:</span> <br> example@example.com
+        <!-- Mobile Dropdown Menu Toggle Button -->
+        <button
+          class="md:hidden p-2 hover:backdrop-blur-sm hover:backdrop-opacity-30 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+          @click="toggleUserDropdown">
+          <UserCircleIcon class="h-6 w-6"></UserCircleIcon>
+        </button>
+
+        <!-- Dropdown menu for smaller screens -->
+        <div class="glass-morphic-window absolute right-6 top-14  md:hidden"
+          v-if="showUserDropdown" id="smallScreenMenu">
+          <div
+            class="p-4 border-b border-opacity-20 border-slate-400 dark:border-opacity-20 dark:border-slate-200">
+            <span class="font-semibold">Signed in as: <span class="text-emerald-500">{{ userName }}</span></span>
+            <br>
+            <small>{{ userEmail }}</small>
+          </div>
+          <button class="w-full text-left p-4 text-red-500 font-semibold hover:text-white hover:bg-red-500 rounded-b-lg" @click="logoutCheck"> Sign out </button>
         </div>
-        <button class="w-full text-left p-4 text-red-500 font-semibold hover:text-white hover:bg-red-500 rounded-b-lg"
-          @click="logoutCheck">Logout</button>
       </div>
     </div>
   </nav>
 
+
+
   <!-- dialog -->
   <div class="model fixed inset-0 flex items-start justify-center pt-20" v-if="dialog">
     <!-- Overlay with blur effect -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" @click="closeDialog"></div>
+    <div class="absolute inset-0 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-50 backdrop-blur-sm" @click="closeDialog"></div>
     <!-- Dialog content -->
-    <div
-      class="model__content bg-white dark:bg-slate-700 p-6 rounded-md shadow-md w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
+    <div class="model__content p-6 glass-morphic-window w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
       <div class="model__header flex justify-between items-center mb-4">
         <h2 class="model__title text-2xl font-semibold"> {{ dialogTitle }} </h2>
         <button class="model__close p-1 hover:bg-slate-200 dark:hover:bg-slate-600 rounded" @click="closeDialog"
@@ -157,9 +167,8 @@ onUnmounted(() => {
 
     <div v-for="i in 100" :key="i" class="p-4">
       <h1>Test title</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita adipisci laboriosam, sit, eos voluptatem error
-        voluptate possimus quisquam aliquid numquam odio deserunt voluptates non ea praesentium ipsa exercitationem. Sint,
-        ipsam.</p>
-    </div>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita adipisci laboriosam, sit, eos voluptatem error
+      voluptate possimus quisquam aliquid numquam odio deserunt voluptates non ea praesentium ipsa exercitationem. Sint,
+      ipsam.</p>
   </div>
-</template>
+</div></template>

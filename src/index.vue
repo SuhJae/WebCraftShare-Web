@@ -156,10 +156,9 @@ const signUpValid: Ref<boolean> = computed(() => {
   <!-- dialog -->
   <div class="model fixed inset-0 flex items-start justify-center pt-20" v-if="dialog">
     <!-- Overlay with blur effect -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" @click="dialog = false"></div>
+    <div class="absolute inset-0 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-50 backdrop-blur-sm" @click="dialog=false"></div>
     <!-- Dialog content -->
-    <div
-      class="model__content bg-white dark:bg-slate-700 p-6 rounded-md shadow-lg w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
+    <div class="model__content p-6 glass-morphic-window w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
       <div class="model__header flex justify-between items-center mb-4">
         <h2 class="model__title text-2xl font-semibold"> {{ dialogTitle }} </h2>
         <button class="model__close p-1 hover:bg-slate-200 dark:hover:bg-slate-600 rounded" @click="dialog = false">
@@ -175,10 +174,9 @@ const signUpValid: Ref<boolean> = computed(() => {
   <!-- Password recovory -->
   <div class="dialog fixed inset-0 flex items-start justify-center pt-20" v-if="passwordReset">
     <!-- Overlay with blur effect -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" @click="passwordReset = false"></div>
+    <div class="absolute inset-0 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-50 backdrop-blur-sm" @click="passwordReset=false"></div>
     <!-- Dialog content -->
-    <div
-      class="dialog__content bg-white dark:bg-slate-700 p-6 rounded-md shadow-lg w-96 max-w-md absolute top-1/5 left-1/2 transform -translate-x-1/2">
+    <div class="model__content p-6 glass-morphic-window w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
       <div class="dialog__header flex justify-between items-center mb-4">
         <h2 class="dialog__title text-2xl font-semibold"> Password recovery </h2>
         <button class="dialog__close p-1 hover:bg-slate-200 dark:hover:bg-slate-600 rounded"
@@ -192,7 +190,7 @@ const signUpValid: Ref<boolean> = computed(() => {
             <label for="email" class="block text-sm font-medium leading-6">Email address</label>
             <div class="mt-2">
               <input autocomplete="email" placeholder="Enter your email" v-model="recovoryEmail" :required="true"
-                @keyup="errorRecovoryEmail = validateEmail(recovoryEmail)" class="global-input" />
+                @keyup="errorRecovoryEmail = validateEmail(recovoryEmail)" class="glass-morphic-input"/>
               <small v-if="errorRecovoryEmail !== 'valid'" class="text-red-600 dark:text-red-400"> {{ errorRecovoryEmail}}</small>
             </div>
           </div>
@@ -207,10 +205,9 @@ const signUpValid: Ref<boolean> = computed(() => {
   <!-- Sign up -->
   <div class="dialog fixed inset-0 flex items-start justify-center pt-20" v-if="signUp">
     <!-- Overlay with blur effect -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" @click="signUp = false"></div>
+    <div class="absolute inset-0 bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-50 backdrop-blur-sm" @click="signUp=false"></div>
     <!-- Dialog content -->
-    <div
-      class="dialog__content bg-white dark:bg-slate-700 p-6 rounded-md shadow-lg w-96 max-w-md absolute top-1/5 left-1/2 transform -translate-x-1/2">
+    <div class="model__content p-6 glass-morphic-window w-96 absolute top-1/5 left-1/2 transform -translate-x-1/2">
       <div class="dialog__header flex justify-between items-center mb-4">
         <h2 class="dialog__title text-2xl font-semibold"> Sign Up </h2>
         <button class="dialog__close p-1 hover:bg-slate-200 dark:hover:bg-slate-600 rounded" @click="signUp = false">
@@ -223,14 +220,14 @@ const signUpValid: Ref<boolean> = computed(() => {
             <label for="email" class="block text-sm font-medium leading-6">Email address</label>
             <div class="mt-2">
               <input autocomplete="email" placeholder="Enter your email" v-model="signUpEmail" :required="true" type="email"
-                @keyup="errorSignUpEmail = validateEmail(signUpEmail)" class="global-input" />
+                @keyup="errorSignUpEmail = validateEmail(signUpEmail)" class="glass-morphic-input" />
               <small v-if="errorSignUpEmail !== 'valid'" class="text-red-600 dark:text-red-400"> {{ errorSignUpEmail }}</small>
             </div>
           </div>
           <div>
             <label for="username" class="block text-sm font-medium leading-6">Nickname</label>
             <div class="mt-2">
-              <input autocomplete="username" placeholder="Choose your nickname" v-model="userName" :required="true" type="text" @keyup="handleNicknameKeyUp" class="global-input" />
+              <input autocomplete="username" placeholder="Choose your nickname" v-model="userName" :required="true" type="text" @keyup="handleNicknameKeyUp" class="glass-morphic-input"/>
               <small v-if="userNameStatus !== 'valid'" class="text-red-600 dark:text-red-400"> {{ userNameStatus }}</small>
 
               <div v-else>
@@ -244,12 +241,12 @@ const signUpValid: Ref<boolean> = computed(() => {
             <label for="password" class="block text-sm font-medium leading-6">Password</label>
             <div class="mt-2">
               <input autocomplete="new-password" placeholder="Choose your password" v-model="newPassword" :required="true" type="password"
-                @keyup="errorNewPassword = validatePassword(newPassword)" class="global-input" />
+                @keyup="errorNewPassword = validatePassword(newPassword)" class="glass-morphic-input" />
               <small v-if="errorNewPassword !== 'valid'" class="text-red-600 dark:text-red-400"> {{ errorNewPassword }}</small>
             </div>
 
             <div class="mt-2">
-              <input autocomplete="new-password" placeholder="Confirm your password" v-model="passwordConfirm" :required="true" type="password" class="global-input" />
+              <input autocomplete="new-password" placeholder="Confirm your password" v-model="passwordConfirm" :required="true" type="password" class="glass-morphic-input" />
               <small v-if="(newPassword !== passwordConfirm) && errorNewPassword == 'valid'" class="text-red-600 dark:text-red-400"> Password does not match! </small>
             </div>
           </div>

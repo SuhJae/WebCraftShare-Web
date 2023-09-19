@@ -97,7 +97,7 @@ onUnmounted(() => {
       <div class="flex items-center space-x-2">
         <img v-if="darkMode" class="h-10 w-auto" src="/src/assets/images/logo-dark.svg" alt="WebCraftShare Logo">
         <img v-else class="h-10 w-auto" src="/src/assets/images/logo.svg" alt="WebCraftShare Logo">
-        <span class="text-xl font-semibold md:flex hidden">WebCraftShare</span>
+        <span class="text-xl font-semibold md:flex hidden">WCS</span>
 
       </div>
 

@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: './index.html',
         home: './public/home.html',
+        forgot: './public/forgot.html',
       },
     },
   },
